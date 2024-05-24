@@ -30,7 +30,7 @@ jobs:
 
       - name: KCL config edit
         if: ${{ github.event.inputs.image }}
-        run: kcl -O _config.containers.flask_demo.image="${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}"
+        run: kcl -O _config.containers.flask_demo.image="${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}" -O _config.containers.flask_demo.ports="[{containerPort = 5000}]"
 
       - name: Git Commit/Push Changes
         uses: EndBug/add-and-commit@v9
