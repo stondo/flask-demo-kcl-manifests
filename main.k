@@ -1,6 +1,6 @@
 import app
 
-config = app.App {
+_config = app.App {
     name = "flask-demo"
     containers: {
         flaskdemo = {
