@@ -8,6 +8,5 @@ _config = app.App {
             ports = [{containerPort = 5000}]
         }
     }
-    service: {ports = [{port = 5000, targetPort = 5000}]}
-    service: {type = "NodePort"}
+    service: {type = "NodePort", ports = [{port = 5000, targetPort = 5000}]}
 }
