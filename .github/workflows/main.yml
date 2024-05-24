@@ -16,13 +16,22 @@ jobs:
   update-manifests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         if: ${{ github.event.inputs.image }}
+      
+      - name: Set up Go 1.21
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.21
+
+      - name: Install KCL CLI
+        run: go install kcl-lang.io/cli/cmd/kcl@latest
+
       - name: KCL config edit
         if: ${{ github.event.inputs.image }}
-        run: |
-          wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
-          source /home/runner/.bashrc && kcl -O config.containers.flask_demo.image="${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}" \;
+        run: kcl -O config.containers.flask_demo.image="${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}"
+
       - name: Git Commit/Push Changes
         uses: EndBug/add-and-commit@v9
         if: ${{ github.event.inputs.image }}
