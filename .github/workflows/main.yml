@@ -22,7 +22,7 @@ jobs:
         if: ${{ github.event.inputs.image }}
         run: |
           wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
-          find /usr/local -name "kcl" -exec {} -d -O config.containers.flask_demo.image="${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}" \;
+          find /tmp/kcl-install-*/kclvm -name "kcl" -exec {} -d -O config.containers.flask_demo.image="${{ github.event.inputs.image }}:${{ github.event.inputs.sha-tag }}" \;
       - name: Git Commit/Push Changes
         uses: EndBug/add-and-commit@v9
         if: ${{ github.event.inputs.image }}
