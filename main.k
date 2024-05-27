@@ -4,7 +4,7 @@ _config = app.App {
     name = "flask-demo"
     containers: {
         flaskdemo = {
-            image = "stondo/flask_demo:8d31498e765ff67a2fa9933d4adffe067544b2fe"
+            image = "stondo/flask_demo:314bc2c416b35cbbb6c4c6fd53adab0d48ce88d9"
             ports = [{containerPort = 5000}]
         }
     }
